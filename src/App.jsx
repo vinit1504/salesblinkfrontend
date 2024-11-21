@@ -17,9 +17,9 @@ const App = () => {
   const dispatch = useDispatch();
   const location = useLocation(); 
 
-  useEffect(() => {
-    dispatch(chechAuth());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(chechAuth());
+  // }, [dispatch]);
 
   return (
     <div>
