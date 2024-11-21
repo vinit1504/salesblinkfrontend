@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk("auth/login", async (formData) => {
-  const response = await axios.post(`${baseURL}/auth/signin`, formData, {
+  const response = await axios.post(`${baseURL}/auth/register`, formData, {
     withCredentials: true,
   });
 
