@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // const baseURL = "http://localhost:8080/api/v1";
-const baseURL = "https://salesblinkbackend.vercel.app";
+const baseURL = "https://salesblinkbackend.vercel.app/api/v1";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -22,7 +22,7 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk("auth/login", async (formData) => {
-  const response = await axios.post(`${baseURL}/auth/register`, formData, {
+  const response = await axios.post(`${baseURL}/auth/signin`, formData, {
     withCredentials: true,
   });
 
