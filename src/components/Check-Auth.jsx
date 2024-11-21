@@ -3,23 +3,26 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-// Component to handle authentication-based route redirection
-const Check_Auth = ({ isAuthenticated, children }) => {
+const Check_Auth = ({ children }) => {
   // Hook to get the current location of the user in the app
   const location = useLocation();
 
-  // If the user is not authenticated and tries to access a restricted route
-  // Redirect them to the login page, except for the login or register routes
-  if (
-    !isAuthenticated &&
-    !["/auth/login", "/auth/register"].includes(location.pathname)
-  ) {
+  // Get token from localStorage
+  const token = localStorage.getItem("token");
+
+  // If no token is found, the user is not authenticated, redirect to login page
+  if (!token) {
+    // Allow access to the login and register pages if the user is not authenticated
+    if (["/auth/login", "/auth/register"].includes(location.pathname)) {
+      return <>{children}</>;
+    }
+    // Redirect to login page if trying to access any other routes
     return <Navigate to="/auth/login" />;
   }
 
-  // If the user is authenticated and tries to access login or register pages
-  // Redirect them to the home page
-  if (isAuthenticated && ["/auth/login", "/auth/register"].includes(location.pathname)) {
+  // If token exists (authenticated), but user is trying to access login or register pages
+  if (["/auth/login", "/auth/register"].includes(location.pathname)) {
+    // Redirect to home page if authenticated user tries to access login or register
     return <Navigate to="/" />;
   }
 
