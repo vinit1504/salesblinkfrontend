@@ -22,13 +22,27 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk("auth/login", async (formData) => {
-  const response = await axios.post(`${baseURL}/auth/signin`, formData, {
-    withCredentials: true,
-  });
 
-  return response.data;
+export const loginUser = createAsyncThunk("auth/login", async (formData, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(`${baseURL}/auth/signin`, formData, {
+      withCredentials: true, // Include cookies if necessary
+    });
+
+    const { token } = response.data;
+
+    // Store token in localStorage
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    return response.data;
+  } catch (error) {
+    // Handle errors
+    return rejectWithValue(error.response?.data?.message || "Login failed");
+  }
 });
+
 
 export const chechAuth = createAsyncThunk("auth/check-auth", async () => {
   const response = await axios.get(`${baseURL}/auth/check-auth`, {
