@@ -8,8 +8,8 @@ const initialState = {
   user: null,
 };
 
-// const baseURL = "http://localhost:8080/api/v1";
-const baseURL = "https://salesblinkbackend.vercel.app/api/v1";
+const baseURL = "http://localhost:8080/api/v1";
+// const baseURL = "https://salesblinkbackend.vercel.app/api/v1";
 
 
 export const registerUser = createAsyncThunk(
@@ -33,6 +33,7 @@ export const loginUser = createAsyncThunk("auth/login", async (formData) => {
 export const chechAuth = createAsyncThunk("auth/check-auth", async () => {
   const response = await axios.get(`${baseURL}/auth/check-auth`, {
     withCredentials: true,
+    credentials: "include", 
     headers: {
       "Cache-Control": "no-cache, no-store, must-revalidate , proxy-revalidate",
     },
