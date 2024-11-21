@@ -8,8 +8,8 @@ const initialState = {
   user: null,
 };
 
-const baseURL = "http://localhost:8080/api/v1";
-// const baseURL = "https://salesblinkbackend.vercel.app/api/v1";
+// const baseURL = "http://localhost:8080/api/v1";
+const baseURL = "https://salesblinkbackend.vercel.app/api/v1";
 
 
 export const registerUser = createAsyncThunk(
