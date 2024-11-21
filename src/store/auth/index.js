@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // const baseURL = "http://localhost:8080/api/v1";
-const baseURL = "https://vinitb.vercel.app";
+const baseURL = "https://salesblinkbackend.vercel.app";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
